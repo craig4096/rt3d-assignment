@@ -1,0 +1,41 @@
+textures/
+sounds/
+models/
+
+Player
+hobgoblin.md2
+hobgoblin.bmp
+0.0 0.0 0.0
+0.08 0.08 0.08
+2.0 2.0 2.0
+0.0
+1.0 1.0 1.0
+1.0 1.0 1.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0
+
+100
+10
+jump.wav
+attack.wav
+10.0
+90.0
+5.0
+154.0	159.0	5.0
+178.0	183.0	5.0
+0.0	39.0	5.0
+65.0	71.0	5.0
+112.0	122.0	15.0
+
+15.0
+2.0
+2.0
+
+
+
+levels/level_1.txt
+levels/level_2.txt
+levels/level_3.txt
+
+
