@@ -108,20 +108,28 @@ Heightmap::~Heightmap(void)
 
 void Heightmap::Draw()
 {
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+
 	glBindTexture(GL_TEXTURE_2D, this->texture);
 
 	//glColor3f(1,1,1);
 	//glPolygonMode(GL_FRONT, GL_LINE);
+
 	// set the vertex buffer
 	glVertexPointer(3, GL_FLOAT, 0, &vertices[0]);
 	glTexCoordPointer(2, GL_FLOAT, 0, &texCoords[0]);
 	glNormalPointer(GL_FLOAT, 0, &normals[0]);
 
-
 	// draw the vertices
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, &indices[0]);
 
 	glBindTexture(GL_TEXTURE_2D, -1);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
 }
 
 

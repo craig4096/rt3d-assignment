@@ -29,7 +29,7 @@ void Light::Set(GLenum light)
 	glLightfv(light, GL_DIFFUSE, (float*)&diffuse);
 	glLightfv(light, GL_AMBIENT, (float*)&ambient);
 	glLightfv(light, GL_SPECULAR, (float*)&specular);
-	glLightf(light, GL_SHININESS, shininess);
+	//glLightf(light, GL_SHININESS, shininess);
 	glLightf(light, GL_CONSTANT_ATTENUATION, constantAttenuation);
 	glLightf(light, GL_LINEAR_ATTENUATION, linearAttenuation);
 	glLightf(light, GL_QUADRATIC_ATTENUATION, quadraticAttenuation);

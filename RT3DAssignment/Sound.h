@@ -1,8 +1,8 @@
 #pragma once
 
-#include "AL/alut.h"
 #include "Vector3.h"
 #include <fstream>
+#include <SFML/Audio.hpp>
 
 class Sound
 {
@@ -17,10 +17,6 @@ public:
 	void Stop();
 
 private:
-
-	// sound buffer
-	ALuint buffer;
-
-	// source
-	ALuint source;
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
 };

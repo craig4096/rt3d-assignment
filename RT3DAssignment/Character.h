@@ -13,7 +13,7 @@ class Character
 {
 public:
 	Character(Level* level, std::ifstream& ifs);
-	~Character(void);
+	virtual ~Character(void);
 
 	// draws the character
 	void Draw();

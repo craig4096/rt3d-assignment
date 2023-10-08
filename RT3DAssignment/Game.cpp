@@ -24,19 +24,17 @@ Game::Game(const char* filename)
 	ifs >> soundDirectory;
 	ifs >> modelDirectory;
 
-
 	player = new Player(ifs);
 
 	camera = new Camera(player, ifs);
 
 	// load in all the levels
-	while(!ifs.eof())
+	std::string levelFile;
+	while(std::getline(ifs, levelFile))
 	{
-		std::string level;
-		ifs >> level;
-		if(!level.empty())
+		if(!levelFile.empty())
 		{
-			levels.push_back(level);
+			levels.push_back(levelFile);
 		}
 	}
 	ifs.close();

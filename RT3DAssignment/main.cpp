@@ -19,7 +19,6 @@ Game* game;
 long lastTime;
 float timeDelta = 0.02f;
 long accumulator = 0; // time accumulator
-bool running = true;
 bool wireframe = false;
 
 void Display();
@@ -31,14 +30,11 @@ void Special(int c, int x, int y);
 
 int main(int argc, char** argv)
 {
-	// initiate openal (utility)
-	alutInit(&argc, argv);
-
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(800, 600);
 	glutInitWindowPosition(100,100);
-	glutCreateWindow("Treasure Hunter (B00176646)");
+	glutCreateWindow("Treasure Hunter");
 	glutDisplayFunc(Display);
 	glutKeyboardFunc(Keyboard);
 	glutKeyboardUpFunc(KeyboardUp);
@@ -46,6 +42,7 @@ int main(int argc, char** argv)
 	glutIdleFunc(Display);
 	glutReshapeFunc(Reshape);
 	glutIdleFunc(Display);
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
 	//glutFullScreen();
 
 #ifdef _DEBUG
@@ -54,15 +51,12 @@ int main(int argc, char** argv)
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glShadeModel(GL_SMOOTH);
 
 	glMatrixMode(GL_PROJECTION);
-	gluPerspective(60, 1.0, 0.1, 10000.0);
+	gluPerspective(90, 1.0, 0.1, 10000.0);
 
 	try
 	{
@@ -76,11 +70,7 @@ int main(int argc, char** argv)
 
 	lastTime = getCurTimeMs();
 
-
-	while(running)
-	{
-		glutMainLoopEvent();
-	}
+	glutMainLoop();
 
 	// delete the game
 	delete game;
@@ -125,7 +115,7 @@ void Display()
 
 		if(game->IsComplete())
 		{
-			running = false;
+			glutLeaveMainLoop();
 			return;
 		}
 	}
@@ -168,8 +158,10 @@ void Keyboard(unsigned char c, int x, int y)
 	{
 		glutLeaveMainLoop();
 	}
-
-	game->KeyPressed(c);
+	else
+	{
+		game->KeyPressed(c);
+	}
 }
 
 void KeyboardUp(unsigned char c, int x, int y)
